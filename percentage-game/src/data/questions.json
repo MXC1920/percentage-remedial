@@ -1,0 +1,59 @@
+[
+  {
+    "id": "q1",
+    "topic": "apples",
+    "story": "Raj and Vipul are sharing apples with Mohan. Raj gives 10% of his apples, and Vipul gives 20% of his apples.",
+    "persons": [
+      { "id": "raj", "name": "Raj", "amount": 100, "avatar": "👦🏽", "color": "#60a5fa", "label": "apples" },
+      { "id": "vipul", "name": "Vipul", "amount": 200, "avatar": "👦🏻", "color": "#4ade80", "label": "apples" },
+      { "id": "mohan", "name": "Mohan", "amount": 0, "avatar": "👦🏾", "color": "#f472b6", "label": "apples" }
+    ],
+    "transfers": [
+      { "from": "raj", "to": "mohan", "percentage": 10 },
+      { "from": "vipul", "to": "mohan", "percentage": 20 }
+    ],
+    "predictionQuestion": "Who will give more apples to Mohan?",
+    "predictionOptions": ["Raj", "Vipul", "They will give the same amount"],
+    "hint": "1. Convert percentage to fraction.\n2. Multiply by whole.\n3. Compare quantities.",
+    "explanation": "Since 10% of 100 apples is 10 apples, and 20% of 200 apples is 40 apples. Vipul gave more. Notice that solving this required knowing the whole amount!",
+    "misconception": "You might think 10% is always smaller than 20%, but it depends on the whole!"
+  },
+  {
+    "id": "q2",
+    "topic": "money",
+    "story": "Raj and Vipul are donating money to Mohan. Raj gives 50% of his money, and Vipul gives 25% of his.",
+    "persons": [
+      { "id": "raj", "name": "Raj", "amount": 20, "avatar": "👦🏽", "color": "#60a5fa", "label": "$" },
+      { "id": "vipul", "name": "Vipul", "amount": 100, "avatar": "👦🏻", "color": "#4ade80", "label": "$" },
+      { "id": "mohan", "name": "Mohan", "amount": 0, "avatar": "👦🏾", "color": "#f472b6", "label": "$" }
+    ],
+    "transfers": [
+      { "from": "raj", "to": "mohan", "percentage": 50 },
+      { "from": "vipul", "to": "mohan", "percentage": 25 }
+    ],
+    "predictionQuestion": "Who do you think will give more money?",
+    "predictionOptions": ["Raj", "Vipul", "They will give the same amount"],
+    "hint": "1. Find out how much 50% of 20 is.\n2. Find out how much 25% of 100 is.",
+    "explanation": "Even though 50% is a bigger percentage than 25%, 50% of $20 is $10, while 25% of $100 is $25! Vipul actually gave more money.",
+    "misconception": "A bigger percentage doesn't always mean a bigger value!"
+  },
+  {
+    "id": "q3",
+    "topic": "books",
+    "story": "Raj gives 5% of his books. Vipul gives 5% of his books.",
+    "persons": [
+      { "id": "raj", "name": "Raj", "amount": 200, "avatar": "👦🏽", "color": "#60a5fa", "label": "books" },
+      { "id": "vipul", "name": "Vipul", "amount": 40, "avatar": "👦🏻", "color": "#4ade80", "label": "books" },
+      { "id": "mohan", "name": "Mohan", "amount": 0, "avatar": "👦🏾", "color": "#f472b6", "label": "books" }
+    ],
+    "transfers": [
+      { "from": "raj", "to": "mohan", "percentage": 5 },
+      { "from": "vipul", "to": "mohan", "percentage": 5 }
+    ],
+    "predictionQuestion": "Who will give more books?",
+    "predictionOptions": ["Raj", "Vipul", "They will give the same amount"],
+    "hint": "Calculate 5% for both.",
+    "explanation": "Even though the percentages are exactly the same, 5% of 200 is 10 books and 5% of 40 is 2 books. Same percentage, different values!",
+    "misconception": "The same percentage doesn't mean the same value if the whole amounts are different."
+  }
+]

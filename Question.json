@@ -1,0 +1,210 @@
+{
+  "moduleId": "percentage-whole-vs-part",
+  "moduleTitle": "Does a Bigger Percentage Always Mean a Bigger Quantity?",
+  "learningObjective": "Students understand that a larger percentage does not always represent a larger quantity because the whole amount also matters.",
+  "stories": [
+    {
+      "storyId": "apple-sharing-story",
+      "storyTitle": "Help Fill Mohan's Basket!",
+      "storyType": "guided-example",
+      "status": "completed-example",
+      "characters": [
+        {
+          "name": "Vipul",
+          "item": "Apples",
+          "quantity": 100,
+          "sharePercentage": "5%"
+        },
+        {
+          "name": "Raj",
+          "item": "Apples",
+          "quantity": 10,
+          "sharePercentage": "60%"
+        },
+        {
+          "name": "Mohan",
+          "item": "Apples",
+          "quantity": 0
+        }
+      ],
+      "screens": [
+        {
+          "screenId": "intro",
+          "title": "Help Fill Mohan's Basket!",
+          "content": [
+            "Vipul and Raj want to share some apples with Mohan.",
+            "Vipul has 100 apples.",
+            "Raj has 10 apples.",
+            "Mohan's basket is empty.",
+            "Let's find out how many apples each person will give."
+          ]
+        },
+        {
+          "screenId": "vipul-calculation",
+          "title": "Vipul's Turn",
+          "animationSteps": [
+            "5% means 5 out of every 100.",
+            "Write it as 5/100 × 100.",
+            "100 ÷ 100 = 1.",
+            "1 × 5 = 5.",
+            "Vipul will give 5 apples."
+          ],
+          "studentTask": "Drag the highlighted 5 apples into Mohan's basket."
+        },
+        {
+          "screenId": "raj-calculation",
+          "title": "Raj's Turn",
+          "animationSteps": [
+            "60% means 60 out of every 100.",
+            "Write it as 60/100 × 10.",
+            "60 × 10 = 600.",
+            "600 ÷ 100 = 6.",
+            "Raj will give 6 apples."
+          ],
+          "studentTask": "Drag the highlighted 6 apples into Mohan's basket."
+        },
+        {
+          "screenId": "reflection",
+          "title": "Let's Compare",
+          "results": [
+            "Vipul gave 5 apples.",
+            "Raj gave 6 apples."
+          ],
+          "question": {
+            "type": "mcq",
+            "text": "Who gave more apples?",
+            "options": [
+              "Vipul",
+              "Raj",
+              "Both gave the same number"
+            ],
+            "correctAnswer": "Raj"
+          }
+        }
+      ],
+      "takeaway": "A larger percentage does not always mean a larger quantity. The whole amount also matters."
+    },
+
+    {
+      "storyId": "pizza-sharing-story",
+      "storyTitle": "Share the Pizza!",
+      "storyType": "guided-practice",
+      "status": "student-solves",
+      "characters": [
+        {
+          "name": "Emma",
+          "item": "Pizza Slices",
+          "quantity": 20,
+          "sharePercentage": "25%"
+        },
+        {
+          "name": "Liam",
+          "item": "Pizza Slices",
+          "quantity": 80,
+          "sharePercentage": "10%"
+        },
+        {
+          "name": "Noah",
+          "item": "Pizza Slices",
+          "quantity": 0
+        }
+      ],
+      "screens": [
+        {
+          "screenId": "story-transition",
+          "title": "Your Turn!",
+          "content": [
+            "You have seen how percentages can be converted into actual quantities.",
+            "Now try solving a new situation yourself."
+          ]
+        },
+        {
+          "screenId": "emma-calculation",
+          "title": "Emma's Pizza",
+          "question": {
+            "text": "Emma has 20 pizza slices. She wants to give 25% of her slices to Noah.",
+            "fillBlanks": {
+              "percentageFraction": {
+                "numerator": "",
+                "denominator": "100"
+              },
+              "multiplicationExpression": "__ / 100 × 20",
+              "finalAnswer": ""
+            }
+          },
+          "studentTask": "Fill in the blanks and find how many slices Emma gives."
+        },
+        {
+          "screenId": "emma-hints",
+          "title": "Need a Hint?",
+          "hints": [
+            "Write 25% as a fraction with denominator 100.",
+            "25% = 25/100.",
+            "Now multiply 25 by 20.",
+            "Divide your answer by 100."
+          ]
+        },
+        {
+          "screenId": "liam-calculation",
+          "title": "Liam's Pizza",
+          "question": {
+            "text": "Liam has 80 pizza slices. He wants to give 10% of his slices to Noah.",
+            "fillBlanks": {
+              "percentageFraction": {
+                "numerator": "",
+                "denominator": "100"
+              },
+              "multiplicationExpression": "__ / 100 × 80",
+              "finalAnswer": ""
+            }
+          },
+          "studentTask": "Fill in the blanks and find how many slices Liam gives."
+        },
+        {
+          "screenId": "liam-hints",
+          "title": "Need a Hint?",
+          "hints": [
+            "Write 10% as a fraction with denominator 100.",
+            "10% = 10/100.",
+            "Multiply 10 by 80.",
+            "Divide your answer by 100."
+          ]
+        },
+        {
+          "screenId": "drag-and-drop",
+          "title": "Share the Pizza",
+          "studentTask": [
+            "Drag Emma's pizza slices to Noah's plate.",
+            "Drag Liam's pizza slices to Noah's plate."
+          ]
+        },
+        {
+          "screenId": "reflection",
+          "title": "Let's Compare",
+          "question": {
+            "type": "mcq",
+            "text": "Who gave more pizza slices?",
+            "options": [
+              "Emma",
+              "Liam",
+              "They gave the same number"
+            ],
+            "correctAnswer": "Liam"
+          }
+        }
+      ],
+      "takeaway": "Even though 25% is greater than 10%, Liam gave more slices because he started with more pizza slices."
+    }
+  ],
+
+  "progression": {
+    "story1": {
+      "label": "Worked Example",
+      "description": "System demonstrates the calculations."
+    },
+    "story2": {
+      "label": "Guided Practice",
+      "description": "Student completes the calculations with hints."
+    }
+  }
+}
