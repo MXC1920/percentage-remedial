@@ -182,11 +182,11 @@ export default function App() {
     }
 
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 w-full max-w-screen-xl mx-auto">
+      <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4 w-full max-w-screen-xl mx-auto">
         
         {/* Main Combined Context & Question Banner */}
         {screen.type !== 'WELCOME' && screen.type !== 'LEVEL_COMPLETE' && (
-          <div className="w-full max-w-5xl mx-auto bg-white p-6 md:p-8 rounded-3xl shadow-sm border-4 border-slate-200 text-center z-20 flex flex-col gap-4">
+          <div className="w-full max-w-5xl mx-auto bg-white p-4 sm:p-6 rounded-3xl shadow-sm border-4 border-slate-200 text-center z-20 flex flex-col gap-3">
             
             {/* Title */}
             <h2 className="text-3xl font-black text-slate-800">{screen.title}</h2>
@@ -199,7 +199,7 @@ export default function App() {
             )}
 
             {/* Scenario Highlighting Block */}
-            {story && story.characters && !isMCQ && (
+            {story && story.characters && (
               <div className="w-full flex flex-row items-center justify-center gap-3 flex-wrap mt-2 bg-slate-50 p-4 rounded-xl border-2 border-slate-100">
                 <span className="font-bold text-slate-500 mr-2 flex items-center gap-2">
                   <Info size={20} className="text-blue-500"/> Scenario:
@@ -230,30 +230,30 @@ export default function App() {
 
             {isBlanks && (
               <div className="mt-8 flex flex-col gap-6 items-center bg-white p-8 rounded-3xl shadow-lg border-4 border-slate-200">
-                <p className="text-xl font-bold text-slate-700 text-center w-full relative">
+                <p className="text-lg sm:text-xl font-bold text-slate-700 text-center w-full relative">
                   {screen.question.text}
                 </p>
-                <div className="flex flex-col items-center relative">
-                  <div className="flex items-center gap-6 text-2xl font-black text-slate-600 bg-slate-50 p-8 rounded-3xl border-4 border-slate-200 mt-4">
-                    <div className="flex flex-col items-center justify-center w-24">
+                <div className="flex flex-col items-center relative w-full px-1">
+                  <div className="w-full max-w-sm flex justify-center items-center gap-2 sm:gap-3 text-lg font-black text-slate-600 bg-slate-50 px-1 py-4 sm:p-5 rounded-2xl border-4 border-slate-200 mt-2">
+                    <div className="flex flex-col items-center justify-center w-12 sm:w-14">
                       <input 
                         type="text" 
                         value={fillBlanksState.num || ''} 
                         onChange={(e) => setFillBlanksState(p => ({...p, num: e.target.value}))}
-                        className="w-20 h-16 text-center border-4 border-slate-300 rounded-xl focus:outline-none focus:border-blue-400 text-2xl font-black"
+                        className="w-12 sm:w-14 h-10 sm:h-12 text-center border-4 border-slate-300 rounded-lg focus:outline-none focus:border-blue-400 text-lg font-black"
                         placeholder="?"
                       /> 
-                      <div className="w-full h-1.5 bg-slate-400 rounded-full my-2"></div>
-                      <span className="text-2xl font-black text-slate-500">{screen.question.fillBlanks.percentageFraction.denominator}</span> 
+                      <div className="w-full h-1 bg-slate-400 rounded-full my-1"></div>
+                      <span className="text-lg font-black text-slate-500">{screen.question.fillBlanks.percentageFraction.denominator}</span> 
                     </div>
-                    <span>×</span>
-                    <span className="text-4xl text-slate-700">{screen.question.fillBlanks.multiplicationExpression.split('×')[1]?.trim() || '?'}</span>
-                    <span>=</span>
+                    <span className="mx-0.5">×</span>
+                    <span className="text-xl sm:text-2xl text-slate-700">{screen.question.fillBlanks.multiplicationExpression.split('×')[1]?.trim() || '?'}</span>
+                    <span className="mx-0.5">=</span>
                     <input 
                       type="text" 
                       value={fillBlanksState.ans || ''} 
                       onChange={(e) => setFillBlanksState(p => ({...p, ans: e.target.value}))}
-                      className="w-24 h-16 text-center border-4 border-slate-300 rounded-xl focus:outline-none focus:border-blue-400 text-2xl font-black text-blue-600"
+                      className="w-12 sm:w-16 h-10 sm:h-12 text-center border-4 border-slate-300 rounded-lg focus:outline-none focus:border-blue-400 text-lg font-black text-blue-600"
                       placeholder="Ans"
                     />
                     
@@ -365,8 +365,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen p-6 md:p-12 flex flex-col bg-[#f0fdf4]">
-      <header className="flex justify-between items-center mb-8">
+    <div className="min-h-screen p-4 sm:p-8 md:p-10 lg:p-12 flex flex-col bg-[#f0fdf4]">
+      <header className="flex justify-between items-center mb-4 md:mb-6">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 bg-blue-500 rounded-2xl flex items-center justify-center text-2xl text-white shadow-sm font-black rotate-3">
             %
@@ -408,7 +408,7 @@ export default function App() {
       <main className="flex-1 flex flex-col relative z-10 w-full">
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentStepIdx}
+            key={currentStep.story?.storyId || currentStep.type}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
@@ -453,20 +453,20 @@ function AnimatedFractionCalculation({ steps, onComplete }: { steps: string[], o
   const currentInstruction = currentAnimStep < steps.length ? steps[currentAnimStep] : steps[steps.length - 1];
 
   return (
-    <div className="flex flex-col gap-6 items-center mt-6 w-full">
-      <div className="flex items-center gap-4">
+    <div className="flex flex-col gap-6 items-center mt-6 w-full max-w-full">
+      <div className="flex items-stretch justify-center gap-2 w-full px-1">
         <button 
           onClick={handlePrevStep}
           disabled={currentAnimStep === 0}
-          className={`p-3 rounded-full border-4 shadow-sm transition-all ${currentAnimStep > 0 ? 'bg-white border-blue-400 text-blue-600 hover:bg-blue-50' : 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed'}`}
+          className={`flex-shrink-0 p-2 rounded-full border-4 shadow-sm transition-all flex items-center justify-center ${currentAnimStep > 0 ? 'bg-white border-blue-400 text-blue-600 hover:bg-blue-50' : 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed'}`}
         >
-          <ArrowRight size={24} className="rotate-180" />
+          <ArrowRight size={20} className="rotate-180" />
         </button>
 
         <motion.div 
           animate={{ scale: [0.95, 1] }}
           transition={{ duration: 0.15 }}
-          className="p-6 bg-amber-50 border-4 border-amber-400 rounded-2xl text-xl font-bold text-amber-900 shadow-sm text-center w-full min-w-[320px] max-w-md min-h-[100px] flex items-center justify-center transform transition-all duration-300"
+          className="p-4 sm:p-5 bg-amber-50 border-4 border-amber-400 rounded-2xl text-lg sm:text-xl font-bold text-amber-900 shadow-sm text-center flex-1 min-h-[90px] flex items-center justify-center transform transition-all duration-300"
         >
           {currentInstruction}
         </motion.div>
@@ -474,9 +474,9 @@ function AnimatedFractionCalculation({ steps, onComplete }: { steps: string[], o
         <button 
           onClick={handleNextStep}
           disabled={currentAnimStep >= steps.length}
-          className={`p-3 rounded-full border-4 shadow-sm transition-all ${currentAnimStep < steps.length ? 'bg-white border-blue-400 text-blue-600 hover:bg-blue-50' : 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed'}`}
+          className={`flex-shrink-0 p-2 rounded-full border-4 shadow-sm transition-all flex items-center justify-center ${currentAnimStep < steps.length ? 'bg-white border-blue-400 text-blue-600 hover:bg-blue-50' : 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed'}`}
         >
-          <ArrowRight size={24} />
+          <ArrowRight size={20} />
         </button>
       </div>
 

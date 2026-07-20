@@ -145,6 +145,11 @@
           ]
         },
         {
+          "screenId": "emma-transfer",
+          "title": "Emma's Pizza",
+          "studentTask": "Click to transfer Emma's pizza slices to Noah's plate."
+        },
+        {
           "screenId": "liam-calculation",
           "title": "Liam's Pizza",
           "question": {
@@ -171,12 +176,9 @@
           ]
         },
         {
-          "screenId": "drag-and-drop",
-          "title": "Share the Pizza",
-          "studentTask": [
-            "Drag Emma's pizza slices to Noah's plate.",
-            "Drag Liam's pizza slices to Noah's plate."
-          ]
+          "screenId": "liam-transfer",
+          "title": "Liam's Pizza",
+          "studentTask": "Click to transfer Liam's pizza slices to Noah's plate."
         },
         {
           "screenId": "reflection",

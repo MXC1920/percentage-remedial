@@ -56,7 +56,7 @@ export function GameStageLayout({ story, screen, onComplete, children, allowDrag
     activeSources = mentioned;
   }
   
-  const hasDragAction = screen.studentTask && screen.studentTask.toString().toLowerCase().includes('drag');
+  const hasDragAction = screen.studentTask && (screen.studentTask.toString().toLowerCase().includes('drag') || screen.studentTask.toString().toLowerCase().includes('transfer'));
   const canDragNow = hasDragAction && allowDrag;
 
   // Amount requested per active character
@@ -67,26 +67,20 @@ export function GameStageLayout({ story, screen, onComplete, children, allowDrag
   }, {} as Record<string, number>);
 
   // Inventory state
-  const [sourceInventory, setSourceInventory] = useState<Record<string, DraggableItem[]>>(() => {
-    const inv: Record<string, DraggableItem[]> = {};
-    availableSources.forEach(char => {
-      inv[char.name] = getDenominations(char.quantity, char.name);
-    });
-    return inv;
-  });
-
-  const [droppedFrom, setDroppedFrom] = useState<Record<string, DraggableItem[]>>(() => {
-    const init: Record<string, DraggableItem[]> = {};
-    availableSources.forEach(char => { init[char.name] = []; });
-    return init;
-  });
-
+  const [sourceInventory, setSourceInventory] = useState<Record<string, DraggableItem[]>>({});
+  const [droppedFrom, setDroppedFrom] = useState<Record<string, DraggableItem[]>>({});
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // Clear states if the screen changes (so items reset properly if needed across stories, though typically handled via parent remounting)
+  // Initialize inventory only once per story to keep items persistent across screens/turns!
   useEffect(() => {
+    const init: Record<string, DraggableItem[]> = {};
+    availableSources.forEach(char => {
+      init[char.name] = getDenominations(char.quantity, char.name);
+    });
+    setSourceInventory(init);
+    setDroppedFrom({});
     setErrorMsg(null);
-  }, [screen.screenId]);
+  }, [story.storyId]);
 
   const checkCompletion = (currentDroppedMap: Record<string, DraggableItem[]>) => {
     let allComplete = true;
@@ -155,21 +149,23 @@ export function GameStageLayout({ story, screen, onComplete, children, allowDrag
   };
 
   const renderItemVisual = (item: DraggableItem, isTargetBox: boolean = false) => {
-    let Emoji = item.sourceChar.toLowerCase().includes('emma') || item.sourceChar.toLowerCase().includes('liam') ? '🍕' : '🍎';
+    const isPizza = item.sourceChar.toLowerCase().includes('emma') || item.sourceChar.toLowerCase().includes('liam');
+    let Emoji = isPizza ? '🍕' : '🍎';
     let label = '';
     let sizeClass = '';
     
     if (item.type === 'basket10') {
       label = "10";
-      sizeClass = "w-14 h-14 text-3xl";
-      Emoji = '📦';
+      sizeClass = isPizza ? "w-24 h-16 text-[10px] leading-none tracking-tighter" : "w-14 h-14 text-3xl";
+      Emoji = isPizza ? '🍕🍕🍕🍕🍕\n🍕🍕🍕🍕🍕' : '📦';
     } else if (item.type === 'basket5') {
       label = "5";
-      sizeClass = "w-10 h-10 text-xl";
-      Emoji = '🧺';
+      sizeClass = isPizza ? "w-14 h-12 text-xs leading-none tracking-tighter" : "w-10 h-10 text-xl";
+      Emoji = isPizza ? '🍕🍕🍕\n🍕🍕' : '🧺';
     } else {
       label = "1";
-      sizeClass = "w-8 h-8 text-lg";
+      sizeClass = isPizza ? "w-8 h-8 text-sm" : "w-8 h-8 text-lg";
+      Emoji = isPizza ? '🍕' : '🍎';
     }
 
     return (
@@ -184,10 +180,10 @@ export function GameStageLayout({ story, screen, onComplete, children, allowDrag
         className={`${sizeClass} flex flex-col items-center justify-center bg-white border-2 border-slate-300 rounded-md shadow-sm font-black relative ${canDragNow ? 'cursor-pointer hover:border-blue-400 hover:shadow-lg z-10' : ''}`}
         title={canDragNow ? `Click to move ${item.val} items` : ''}
       >
-        <span className="absolute -top-2 -right-2 bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center border border-blue-300 text-[10px] font-bold">
+        <span className="absolute -top-2 -right-2 bg-blue-100 text-blue-800 rounded-full w-5 h-5 flex items-center justify-center border border-blue-300 text-[10px] font-bold z-20">
           {label}
         </span>
-        <span>{Emoji}</span>
+        <span className="whitespace-pre text-center text-sm">{Emoji}</span>
       </motion.div>
     );
   };
